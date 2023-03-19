@@ -1,23 +1,21 @@
 package com.oujeon.reacecrudserver.service;
 
-import com.oujeon.reacecrudserver.mapper.TestMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.oujeon.reacecrudserver.vo.TestVo;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
+
 @Service
-public class TestService {
-
-    @Autowired
-    TestMapper testMapper;
-
-    public String getTest(){
+public interface TestService {
 
 
-        String strTest = testMapper.selectGetTest();
-
-
-        return  strTest;
-    }
+    public String getTest() ;
+    public String postTest() ;
+    public List<Map<String,Object>> restSelect(Integer id, String name) ;
+    public void restPostInsert(Map<String, String> map) ;
+    public void restPutUpdate(Map<String, String> map) ;
+    public void restDeleteDelete(int idId) ;
 
 
 }

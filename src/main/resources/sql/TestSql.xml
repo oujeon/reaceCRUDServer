@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.oujeon.reacecrudserver.mapper.TestMapper">
+
+    <select id="selectGetTest" resultType="String">
+        SELECT  'Get Test' as hello_world FROM dual
+    </select>
+    <select id="selectPostTest" resultType="String">
+        SELECT  'Post Test' as hello_world FROM dual
+    </select>
+
+
+    <select id="restSelect"  resultType="map">
+        SELECT ID_ID
+             , NAME_NAME
+        FROM TEST
+       WHERE ID_ID = #{id}
+        AND  NAME_NAME = #{name}
+    </select>
+
+
+
+    <insert id="restPostInsert" parameterType="map">
+        INSERT INTO TEST
+        (
+            ID_ID
+        , NAME_NAME
+        )
+        VALUES
+            (
+                #{idId}
+            , #{nameName}
+            )
+    </insert>
+
+    <update id="restPutUpdate" parameterType="map">
+        UPDATE TEST
+        SET NAME_NAME = #{nameName}
+        WHERE ID_ID = #{idId}
+    </update>
+
+    <delete id="restDeleteDelete" >
+        DELETE TEST
+	    WHERE ID_ID = #{idId}
+    </delete>
+
+
+
+</mapper>
