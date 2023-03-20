@@ -10,17 +10,20 @@ import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @Slf4j
 @RestController
- // REST API Controller 사용한다는 것을 프레임워크에 알려줌
- // @RestController를 이용하면, 내부적으로 Jackson 라이브러리에 의해 VO 객체를 JSON 형태로 변환하여 응답해준다.
- // 만약 @RestController가 아닌 @Controller를 사용한다면, @ResponseBody를 추가해줘야 한다.
+// REST API Controller 사용한다는 것을 프레임워크에 알려줌
+// @RestController를 이용하면, 내부적으로 Jackson 라이브러리에 의해 VO 객체를 JSON 형태로 변환하여 응답해준다.
+// 만약 @RestController가 아닌 @Controller를 사용한다면, @ResponseBody를 추가해줘야 한다.
 
 @ResponseBody
 public class TestController {
@@ -235,10 +238,26 @@ public class TestController {
     public String getRequest() {
         return "Hello Spring";
     }
+
     //
     @RequestMapping(method = RequestMethod.POST, path = "/getMethod")
     public String getRequest2() {
         return "Hello Spring";
     }
+
+    @PostMapping("/upload")
+    public String fileUpload(MultipartFile fileName) throws
+            IOException {
+
+
+        if(!fileName.isEmpty()) {
+            System.out.println( "fileName.isEmpty() :  " + fileName.isEmpty());
+            System.out.println("fileName  : " +   fileName.getName() );
+            System.out.println("getOriginalFilename  : " +   fileName.getOriginalFilename());
+        }
+        fileName.transferTo(new File(fileName.getOriginalFilename()));
+        return "fileName";
+    }
+
 
 }

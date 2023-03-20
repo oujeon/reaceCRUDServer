@@ -11,3 +11,10 @@ spring:
 mybatis:
   mapper-locations: classpath:sql/*.xml
   configuration.map-underscore-to-camel-case: true
+--- #upload/download
+spring:
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+      location: C:\\Users\\oujeo\\IdeaProjects\\reaceCRUDServer\\src\\main\\resources\\file
