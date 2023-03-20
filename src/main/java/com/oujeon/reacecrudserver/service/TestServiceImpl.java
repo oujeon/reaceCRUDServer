@@ -9,70 +9,80 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class TestServiceImpl  implements  TestService  {
+public class TestServiceImpl implements TestService {
 
     @Autowired
     TestMapper testMapper;
+
     @Override
-    public String getTest(){
+    public String getTest() {
 
 
         String strTest = testMapper.selectGetTest();
 
 
-        return  strTest;
+        return strTest;
     }
+
     @Override
-    public String postTest(){
+    public String postTest() {
 
 
         String strTest = testMapper.selectPostTest();
 
 
-        return  strTest;
+        return strTest;
     }
+
     @Override
-    public List<Map<String,Object>> restSelect(Integer id, String name){
+    public List<Map<String, Object>> restGetSelect(Integer id, String name) {
 
 
-        List<Map<String,Object>> listMapTemp = testMapper.restSelect(  id, name);
+        List<Map<String, Object>> listMapTemp = testMapper.restGetSelect(id, name);
 
-        for(Map<String, Object> map : listMapTemp){
-            System.out.println("NAMENAME : "+ map.get("NAMENAME"));
-            System.out.println("IDID : "+ String.valueOf( map.get("IDID") ));
+        for (Map<String, Object> map : listMapTemp) {
+            System.out.println("NAMENAME : " + map.get("NAMENAME"));
+            System.out.println("IDID : " + String.valueOf(map.get("IDID")));
         }
 
-        return  listMapTemp;
+        return listMapTemp;
     }
 
     @Override
-    public void restPostInsert( Map<String, String> map){
+    public int restPostInsert(Map<String, String> map) {
         //
         System.out.println("testvo : " + map);
         //
-          testMapper.restPostInsert( map);
+        int i = testMapper.restPostInsert(map);
         //                 restpostinsert
 
+        return i;
+
     }
+
     @Override
-    public void restPutUpdate( Map<String, String> map){
+    public int restPutUpdate(Map<String, String> map) {
         //
         System.out.println("testvo : " + map);
         //
-        testMapper.restPutUpdate( map);
+        int i = testMapper.restPutUpdate(map);
         //                 restpostinsert
 
+        System.out.println("update i : " + i);
+
+        return i;
     }
+
     @Override
-    public void restDeleteDelete( int idId){
+    public int restDeleteDelete(int idId) {
         //
-        System.out.println("idId : " + idId);
-        //
-        testMapper.restDeleteDelete( idId);
+        int i = testMapper.restDeleteDelete(idId);
+
+        System.out.println("i : " + i);
         //                 restpostinsert
+        return i;
 
     }
-
 
 
 }

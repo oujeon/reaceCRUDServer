@@ -12,10 +12,10 @@ public interface TestMapper {
 
     public String selectGetTest();
     public String selectPostTest();
-    public List<Map<String,Object>> restSelect(Integer id, String name);
-    public void restPostInsert(Map<String, String> map);
-    public void restPutUpdate(Map<String, String> map);
-    public void restDeleteDelete(int idId);
+    public List<Map<String,Object>> restGetSelect(Integer id, String name);
+    public int restPostInsert(Map<String, String> map);
+    public int restPutUpdate(Map<String, String> map);
+    public int restDeleteDelete(int idId);
 
 
 }
