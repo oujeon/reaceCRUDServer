@@ -4,6 +4,39 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script >
+
+    function onClick(){
+
+        axios.get( "http://localhost:8080/download",
+            {
+                responseType: 'blob',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                // data: param
+            }
+            )
+            .then(function (response) {
+                console.log(response.data)
+                const url = window.URL.createObjectURL(new Blob([response.data], { type: response.headers['content-type'] }));
+                const link = document.createElement('a');
+                link.href = url;
+                link.setAttribute('download', "a.png");
+                document.body.appendChild(link);
+                link.click();
+            })
+            .catch(function (error) {
+                // 에러 핸들링
+                console.log(error);
+            })
+            .finally(function () {
+                // 항상 실행되는 영역
+            });
+    }
+
+</script>
 <body>
 <div>
     <form
@@ -15,5 +48,6 @@
         <button type="submit"> Upload </button>
     </form>
 </div>
+<button type="button" onClick="onClick()"> download </button>
 </body>
 </html>

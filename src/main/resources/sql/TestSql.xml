@@ -5,13 +5,19 @@
 
 <mapper namespace="com.oujeon.reacecrudserver.mapper.TestMapper">
 
-    <select id="selectGetTest" resultType="String">
-        SELECT 'Get Test' as hello_world
-        FROM dual
+    <select id="selectGetTest" resultType="map">
+        SELECT ID_ID
+             , NAME_NAME
+        FROM TEST
+        WHERE ID_ID = #{idId}
+          AND NAME_NAME = #{nameName}
     </select>
-    <select id="selectPostTest" resultType="String">
-        SELECT 'Post Test' as hello_world
-        FROM dual
+    <select id="selectPostTest"  resultType="map">
+        SELECT ID_ID
+             , NAME_NAME
+        FROM TEST
+        WHERE ID_ID = #{idId}
+          AND NAME_NAME = #{nameName}
     </select>
 
 
@@ -19,8 +25,7 @@
         SELECT ID_ID
              , NAME_NAME
         FROM TEST
-        WHERE ID_ID = #{id}
-          AND NAME_NAME = #{name}
+        WHERE ID_ID = #{idId}
     </select>
 
 
@@ -45,5 +50,11 @@
         #{idId}
     </delete>
 
+    <select id="restGetVoSelect" resultType="com.oujeon.reacecrudserver.vo.Test12Vo">
+        SELECT ID_ID
+             , NAME_NAME
+        FROM TEST
+        WHERE ID_ID = #{idId}
+    </select>
 
 </mapper>

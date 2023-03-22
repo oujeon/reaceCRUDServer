@@ -1,7 +1,7 @@
 package com.oujeon.reacecrudserver.service;
 
 import com.oujeon.reacecrudserver.mapper.TestMapper;
-import com.oujeon.reacecrudserver.vo.TestVo;
+import com.oujeon.reacecrudserver.vo.Test12Vo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,30 +15,28 @@ public class TestServiceImpl implements TestService {
     TestMapper testMapper;
 
     @Override
-    public String getTest() {
+    public Map<String, Object> getTest(int id, String name) {
 
+        Map<String, Object> mapTemp = testMapper.selectGetTest(id, name);
 
-        String strTest = testMapper.selectGetTest();
-
-
-        return strTest;
+        return mapTemp;
     }
 
     @Override
-    public String postTest() {
+    public Map<String, Object> postTest(Map<String, Object> map) {
 
 
-        String strTest = testMapper.selectPostTest();
+        Map<String, Object> mapTemp = testMapper.selectPostTest(map);
 
 
-        return strTest;
+        return mapTemp;
     }
 
     @Override
-    public List<Map<String, Object>> restGetSelect(Integer id, String name) {
+    public List<Map<String, Object>> restGetSelect(int idId ) {
 
 
-        List<Map<String, Object>> listMapTemp = testMapper.restGetSelect(id, name);
+        List<Map<String, Object>> listMapTemp = testMapper.restGetSelect(idId );
 
         for (Map<String, Object> map : listMapTemp) {
             System.out.println("NAMENAME : " + map.get("NAMENAME"));
@@ -84,5 +82,17 @@ public class TestServiceImpl implements TestService {
 
     }
 
+    @Override
+    public List<Test12Vo> restGetVoSelect(int idId ) {
 
+
+        List<Test12Vo> listMapTemp = testMapper.restGetVoSelect(idId );
+
+        for (Test12Vo map : listMapTemp) {
+            System.out.println("NAMENAME : " + map.getIdId());
+            System.out.println("IDID : " + map.getNameName());
+        }
+
+        return listMapTemp;
+    }
 }
