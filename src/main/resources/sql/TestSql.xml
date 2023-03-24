@@ -46,8 +46,7 @@
     <delete id="restDeleteDelete">
         DELETE
         TEST
-	    WHERE ID_ID =
-        #{idId}
+	    WHERE ID_ID = #{idId}
     </delete>
 
     <select id="restGetVoSelect" resultType="com.oujeon.reacecrudserver.vo.Test12Vo">
@@ -57,4 +56,23 @@
         WHERE ID_ID = #{idId}
     </select>
 
+    <insert id="restPostVoInsert" >
+        INSERT INTO TEST
+        ( ID_ID
+        , NAME_NAME)
+        VALUES ( #{idId}
+               , #{nameName})
+    </insert>
+
+    <update id="restPutVoUpdate" >
+        UPDATE TEST
+        SET NAME_NAME = #{nameName}
+        WHERE ID_ID = #{idId}
+    </update>
+
+    <delete id="restPutVoDelete">
+        DELETE
+        TEST
+	    WHERE ID_ID = #{idId}
+    </delete>
 </mapper>

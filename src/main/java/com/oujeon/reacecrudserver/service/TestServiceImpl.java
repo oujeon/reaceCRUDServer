@@ -95,4 +95,31 @@ public class TestServiceImpl implements TestService {
 
         return listMapTemp;
     }
+
+    @Override
+    public int restPostVoInsert( Test12Vo test12Vo) {
+        //
+        System.out.println("test12Vo : " + test12Vo);
+        int cnt = testMapper.restPostVoInsert(test12Vo );
+        //
+        return cnt;
+    }
+
+    @Override
+    public int restPutVoUpdate( Test12Vo test12Vo) {
+        //
+        System.out.println("test12Vo : " + test12Vo);
+        int cnt = testMapper.restPutVoUpdate(test12Vo );
+        //
+        return cnt;
+    }
+    @Override
+    public int restPutVoDelete( Test12Vo test12Vo) {
+        //
+        System.out.println("test12Vo : " + test12Vo);
+        int cnt = testMapper.restPutVoDelete(test12Vo );
+        //
+        return cnt;
+    }
+
 }

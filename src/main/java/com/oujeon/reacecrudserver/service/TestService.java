@@ -18,4 +18,10 @@ public interface TestService {
     public int restDeleteDelete(int idId) ;
 
     public List<Test12Vo> restGetVoSelect(int idId ) ;
+    public int restPostVoInsert( Test12Vo test12Vo) ;
+
+    public int restPutVoUpdate( Test12Vo test12Vo) ;
+    public int restPutVoDelete( Test12Vo test12Vo) ;
+
+
 }
