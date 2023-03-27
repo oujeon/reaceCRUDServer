@@ -10,7 +10,7 @@ import java.util.Map;
 @Mapper
 public interface TestMapper {
 
-    public Map<String,Object> selectGetTest(int id, String name);
+    public Map<String,Object> selectGetTest(int idId, String nameName);
     public Map<String,Object>  selectPostTest(Map<String, Object> map);
     public List<Map<String,Object>> restGetSelect(int idId );
     public int restPostInsert(Map<String, String> map);

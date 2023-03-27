@@ -15,9 +15,9 @@ public class TestServiceImpl implements TestService {
     TestMapper testMapper;
 
     @Override
-    public Map<String, Object> getTest(int id, String name) {
+    public Map<String, Object> getTest(int idId, String nameName) {
 
-        Map<String, Object> mapTemp = testMapper.selectGetTest(id, name);
+        Map<String, Object> mapTemp = testMapper.selectGetTest(idId, nameName);
 
         return mapTemp;
     }

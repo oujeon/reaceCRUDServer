@@ -34,9 +34,12 @@ public class TestController {
     TestService testService;
 
     @GetMapping("/getTest")
-    public Map<String, Object> getTest(@RequestParam int id, String name) {
+    public Map<String, Object> getTest(@RequestParam int idId, String nameName) {
         //
-        Map<String, Object> mapTemp = testService.getTest(id, name);
+        log.info("idId :" + idId );
+        log.info("nameName :" + nameName );
+        //
+        Map<String, Object> mapTemp = testService.getTest(idId, nameName);
         //
         return mapTemp;
     }
@@ -122,8 +125,8 @@ public class TestController {
     @GetMapping("/restGetRequestParamSelect")
     public void restGetRequestParamSelect(@RequestParam String nameName,
                                           @RequestParam Long idId
-    //  @RequestParam(required = false, defaultValue = "default") String requireValue, // default 처리
-    //  @RequestParam Map<String, Object> map // 한번에 받아오려면 이렇게
+                                          //  @RequestParam(required = false, defaultValue = "default") String requireValue, // default 처리
+                                          //  @RequestParam Map<String, Object> map // 한번에 받아오려면 이렇게
     ) {
         //
         log.info("idId : " + idId);
@@ -131,53 +134,146 @@ public class TestController {
         //
     }
 
-    @GetMapping("/restGetModelAttributeSelect")
-    public void restGetModelAttributeSelect(@ModelAttribute Test6Vo test6Vo) {
+    @PostMapping("/restPostRequestParamSelect")
+    public void restPostRequestParamSelect(//@RequestParam String nameName,
+                                           //@RequestParam Long idId
+                                           //  @RequestParam(required = false, defaultValue = "default") String requireValue, // default 처리
+                                           @RequestParam Map<String, Object> map // 한번에 받아오려면 이렇게
+    ) {
+        // post 안된다.
+//        log.info("idId : " + idId);
+//        log.info("nameName : " + nameName);
+        log.info("map : " + map);
         //
+    }
+
+    @GetMapping("/restGetVoModelAttributeSelect")
+    public void restGetVoModelAttributeSelect(@ModelAttribute Test6Vo test6Vo) {
+        // 성공
         log.info("id : " + test6Vo.getIdId());
         log.info("name : " + test6Vo.getNameName());
         //
     }
 
-    @PostMapping("/restPostModelAttributeSelect")
-    public void restPostModelAttributeSelect(@ModelAttribute Test6Vo test6Vo) {
+    @GetMapping("/restGetMapModelAttributeSelect")
+    public void restGetMapModelAttributeSelect(@ModelAttribute Map<String, String> map) {
+        // 실패
+        log.info("id : " + map.get("idId"));
+        log.info("name : " + map.get("nameName"));
         //
+    }
+
+    @GetMapping("/restGetMapRequestParamModelAttributeSelect")
+    public void restGetMapRequestParamModelAttributeSelect(@ModelAttribute("userMap") @RequestParam Map<?, ?> map) {
+        // 성공
+        log.info("id : " + map.get("idId"));
+        log.info("name : " + map.get("nameName"));
+        //
+    }
+
+
+    @PostMapping("/restPostVoModelAttributeSelect")
+    public void restPostVoModelAttributeSelect(@ModelAttribute Test6Vo test6Vo) {
+        //  실패
         log.info("id : " + test6Vo.getIdId());
         log.info("name : " + test6Vo.getNameName());
         //
     }
 
-    @PostMapping("/restFormModelAttributeSelect")
-    public void restFormModelAttributeSelect(@ModelAttribute Test6Vo test6Vo) {
+    @PostMapping("/restPostMapModelAttributeSelect")
+    public void restPostMapModelAttributeSelect(@ModelAttribute Map<String ,String> map) {
+        // 실패
+        log.info("id : " + map.get("idId"));
+        log.info("name : " + map.get("nameName"));
         //
+    }
+
+
+    @PostMapping("/restFormVoModelAttributeSelect")
+    public void restFormVoModelAttributeSelect(@ModelAttribute Test6Vo test6Vo) {
+        // model은 form에서 사용하는 방식이다.
         log.info("id : " + test6Vo.getIdId());
         log.info("name : " + test6Vo.getNameName());
         //
     }
 
+    @PostMapping("/restFormMapModelAttributeSelect")
+    public void restFormMapModelAttributeSelect(@ModelAttribute Map<String ,String> map) {
+        // 실패
+        log.info("id : " + map.get("idId"));
+        log.info("name : " + map.get("nameName"));
+        //
+    }
+
+    @PostMapping("/restFormMapRequestParamModelAttributeSelect")
+    public void restFormMapRequestParamModelAttributeSelect(@ModelAttribute("userMap") @RequestParam Map<?, ?> map) {
+        // 성공
+        log.info("id : " + map.get("idId"));
+        log.info("name : " + map.get("nameName"));
+        //
+    }
+
+    // RequestBody는 항상 POST 요청만 가능합니다
     @GetMapping("/restGetRequestBodySelect")
-    public void restGetRequestBodySelect(@RequestBody Test7Vo test7Vo) {
+    public void restGetVoRequestBodySelect(@RequestBody String idId, String nameName) {
+        // 실패
+        log.info("id : " + idId);
+        log.info("name : " +nameName);
         //
+    }
+
+    @GetMapping("/restGetVoRequestBodySelect")
+    public void restGetVoRequestBodySelect(@RequestBody Test7Vo test7Vo) {
+        // 실패
         log.info("id : " + test7Vo.getIdId());
         log.info("name : " + test7Vo.getNameName());
         //
     }
 
-    @PostMapping("/restPostRequestBodySelect")
-    public void restPostRequestBodySelect(@ModelAttribute Test7Vo test7Vo) {
+    @GetMapping("/restGetMapRequestBodySelect")
+    public void restGetMapRequestBodySelect(@RequestBody Map<String, Object> map) {
+
+        // 실패
+        log.info("idId : " + map.get("idId"));
+        log.info("nameName : " + map.get("nameName"));
         //
+    }
+
+    //
+    @PostMapping("/restPostVoRequestBodyInsert")
+    public void restFormRequestBodyInsert(@RequestBody Test7Vo test7Vo) {
+        // 성공
         log.info("id : " + test7Vo.getIdId());
         log.info("name : " + test7Vo.getNameName());
         //
     }
 
-    @PostMapping("/restFormRequestBodySelect")
-    public void restFormRequestBodySelect(@ModelAttribute Test7Vo test7Vo) {
+
+    @PostMapping("/restPostMapRequestBodyInsert")
+    public void restPostMapRequestBodyInsert(@RequestBody Map<String, String> map) {
+        // 성공
+        log.info("idId : " + map.get("idId"));
+        log.info("nameName : " + map.get("nameName"));
         //
+    }
+//    구글 검색을 해보니 스프링은 'application/x-www-form-urlencoded'를 이해하지 못한다고 합니다.
+//    해결방법은 의외로 간단한데 코드에서 @RequestBody 어노테이션을 지워주면 해결된다고 합니다.
+    @PostMapping(  "/restPostVoFormRequestBodyInsert" )
+    public void restPostVoFormRequestBodyInsert(@RequestBody Test7Vo test7Vo) {
+        // 실패
         log.info("id : " + test7Vo.getIdId());
         log.info("name : " + test7Vo.getNameName());
         //
     }
+
+    @PostMapping("/restPostMapFormRequestBodyInsert" )
+    public void restPostMapFormRequestBodyInsert(@RequestBody Map<String, String> map) {
+        // 실패
+        log.info("idId : " + map.get("idId"));
+        log.info("nameName : " + map.get("nameName"));
+        //
+    }
+
 
     // Model 객체는 컨트롤러에서 데이터를 생성해 이를 JSP 즉 View에 전달하는 역할을 합니다.
     // Model 객체는 Controller 에서 생성된 데이터를 담아 View 로 전달할 때 사용하는 객체이다.
@@ -259,11 +355,11 @@ public class TestController {
     public Map<String, Object> restPostVoInsert(@RequestBody Test12Vo test12Vo) {
         System.out.println("test12Vo : " + test12Vo);
         //
-         int cnt = testService.restPostVoInsert(test12Vo );
+        int cnt = testService.restPostVoInsert(test12Vo);
         //
         Map<String, Object> mapReturn = new HashMap<>();
         //
-         mapReturn.put("cnt", cnt);
+        mapReturn.put("cnt", cnt);
         //
         return mapReturn;
     }
@@ -272,20 +368,7 @@ public class TestController {
     public Map<String, Object> restPutVoUpdate(@RequestBody Test12Vo test12Vo) {
         System.out.println("test12Vo : " + test12Vo);
         //
-        int cnt = testService.restPutVoUpdate(test12Vo );
-        //
-        Map<String, Object> mapReturn = new HashMap<>();
-        //
-        mapReturn.put("cnt", cnt);
-        //
-        return mapReturn;
-    }
-    @DeleteMapping  ("/restPutVoDelete")
-    public Map<String, Object> restPutVoDelete(@ModelAttribute Test12Vo test12Vo) {
-        //
-        log.info("test12Vo : " + test12Vo);
-        //
-        int cnt = testService.restPutVoDelete(test12Vo );
+        int cnt = testService.restPutVoUpdate(test12Vo);
         //
         Map<String, Object> mapReturn = new HashMap<>();
         //
@@ -294,6 +377,19 @@ public class TestController {
         return mapReturn;
     }
 
+    @DeleteMapping("/restDeleteVoDelete")
+    public Map<String, Object> restDeleteVoDelete(@ModelAttribute Test12Vo test12Vo) {
+        //
+        log.info("test12Vo : " + test12Vo);
+        //
+        int cnt = testService.restPutVoDelete(test12Vo);
+        //
+        Map<String, Object> mapReturn = new HashMap<>();
+        //
+        mapReturn.put("cnt", cnt);
+        //
+        return mapReturn;
+    }
 
 
 }

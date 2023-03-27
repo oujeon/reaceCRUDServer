@@ -10,7 +10,7 @@ import java.util.Map;
 public interface TestService {
 
 
-    public Map<String,Object> getTest(int id, String name) ;
+    public Map<String,Object> getTest(int idId, String nameName) ;
     public Map<String,Object> postTest(Map<String, Object> map) ;
     public List<Map<String,Object>> restGetSelect(int idId ) ;
     public int restPostInsert(Map<String, String> map) ;
